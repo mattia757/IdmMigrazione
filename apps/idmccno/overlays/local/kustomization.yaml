@@ -1,0 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: idmccno-local
+
+resources:
+  - ../../base
+
+images:
+  - name: localhost:5001/idmccno
+    newName: localhost:5001/idmccno
+    newTag: 388caa5
+
+generatorOptions:
+  labels:
+    app.kubernetes.io/name: idmccno
+    app.kubernetes.io/part-of: ccno-migration
+
+configMapGenerator:
+  - name: idmccno-config
+    literals:
+      - SERVER_PORT=8080
+      - SERVER_CONTEXT_PATH=/IdmCCNO
+      - DB_POOL_MAX_SIZE=10
+      - DB_POOL_MIN_IDLE=2
+      - HIBERNATE_DDL_AUTO=none
+      - SHUTDOWN_TIMEOUT=30s
+      - SPRING_MAIN_ALLOW_CIRCULAR_REFERENCES=true
+      - KEYCLOAK_SERVER_URL=http://keycloak-service.keycloak-test.svc.cluster.local:8080
+      - KEYCLOAK_REALM=idmccno
+      - KEYCLOAK_USER_CLIENT_ID=idmccno-user
+      - KEYCLOAK_ADMIN_CLIENT_ID=idmccno-admin

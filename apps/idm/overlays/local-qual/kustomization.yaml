@@ -1,0 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: idm-qual
+
+resources:
+  - ../../base
+
+images:
+  - name: localhost:5001/idm-app
+    newName: localhost:5001/idm-app
+    newTag: 90d1ac3793d3348625a50b910a3cbbb3c289d970
+
+replicas:
+  - name: idm-app
+    count: 2
+
+patches:
+  - target:
+      kind: Deployment
+      name: idm-app
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/0/value
+        value: local-qual
+  - target:
+      kind: Ingress
+      name: idm-app
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: idm-qual.localhost

@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: keycloak-test
+
+resources:
+  - ../../base
+
+images:
+  - name: localhost:5001/keycloak-26-app
+    newName: localhost:5001/keycloak-26-app
+    newTag: 5caf1c48e9f9d2ff31f176f4aa3e883575be5fa8
+
+patches:
+  - target:
+      group: k8s.keycloak.org
+      version: v2beta1
+      kind: Keycloak
+      name: keycloak
+    patch: |-
+      - op: replace
+        path: /spec/hostname/hostname
+        value: http://keycloak-test.localhost:8080

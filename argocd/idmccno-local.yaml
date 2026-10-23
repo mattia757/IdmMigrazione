@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: idmccno-local
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mattia757/IdmMigrazione.git
+    targetRevision: main
+    path: apps/idmccno/overlays/local
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: idmccno-local
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=true

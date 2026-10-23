@@ -1,0 +1,12 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: idmccno
+  labels:
+    app.kubernetes.io/name: idmccno
+    app.kubernetes.io/part-of: ccno-migration
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: idmccno

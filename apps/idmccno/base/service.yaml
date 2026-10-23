@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: idmccno
+  labels:
+    app.kubernetes.io/name: idmccno
+    app.kubernetes.io/part-of: ccno-migration
+spec:
+  selector:
+    app.kubernetes.io/name: idmccno
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

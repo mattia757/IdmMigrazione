@@ -1,0 +1,5 @@
+images:
+  - path: spec/image
+    group: k8s.keycloak.org
+    version: v2beta1
+    kind: Keycloak

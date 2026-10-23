@@ -33,7 +33,7 @@ configMapGenerator:
       - SERVER_TOMCAT_ACCESSLOG_FILE_DATE_FORMAT=
       - SERVER_TOMCAT_ACCESSLOG_ROTATE=false
       - SERVER_TOMCAT_ACCESSLOG_BUFFERED=false
-      - 'SERVER_TOMCAT_ACCESSLOG_PATTERN=%a %t "%r" %s %b %Dms'
+      - 'SERVER_TOMCAT_ACCESSLOG_PATTERN=%a %t "%r" %s %b duration=%D'
       - KEYCLOAK_SERVER_URL=http://keycloak-service.keycloak-test.svc.cluster.local:8080
       - KEYCLOAK_REALM=idmccno
       - KEYCLOAK_USER_CLIENT_ID=idmccno-user

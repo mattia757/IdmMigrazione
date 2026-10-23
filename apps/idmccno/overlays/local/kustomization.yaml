@@ -21,7 +21,7 @@ configMapGenerator:
     literals:
       - SERVER_PORT=8080
       - SERVER_CONTEXT_PATH=/IdmCCNO
-      - DB_POOL_MAX_SIZE=10
+      - DB_POOL_MAX_SIZE=12
       - DB_POOL_MIN_IDLE=2
       - HIBERNATE_DDL_AUTO=none
       - SHUTDOWN_TIMEOUT=30s
